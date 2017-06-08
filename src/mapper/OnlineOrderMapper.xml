@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dao.OnlineOrderMapper" >
+  <resultMap id="BaseResultMap" type="entity.OnlineOrder" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="orderNo" property="orderno" jdbcType="VARCHAR" />
+    <result column="productId" property="productid" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="buyNum" property="buynum" jdbcType="DOUBLE" />
+    <result column="buyDate" property="buydate" jdbcType="DATE" />
+    <result column="addressId" property="addressid" jdbcType="INTEGER" />
+    <result column="ordersttus" property="ordersttus" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, orderNo, productId, userId, buyNum, buyDate, addressId, ordersttus
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="entity.OnlineOrderExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_online_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_online_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_online_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="entity.OnlineOrderExample" >
+    delete from t_online_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="entity.OnlineOrder" >
+    insert into t_online_order (id, orderNo, productId, 
+      userId, buyNum, buyDate, 
+      addressId, ordersttus)
+    values (#{id,jdbcType=INTEGER}, #{orderno,jdbcType=VARCHAR}, #{productid,jdbcType=INTEGER}, 
+      #{userid,jdbcType=INTEGER}, #{buynum,jdbcType=DOUBLE}, #{buydate,jdbcType=DATE}, 
+      #{addressid,jdbcType=INTEGER}, #{ordersttus,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="entity.OnlineOrder" >
+    insert into t_online_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderno != null" >
+        orderNo,
+      </if>
+      <if test="productid != null" >
+        productId,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="buynum != null" >
+        buyNum,
+      </if>
+      <if test="buydate != null" >
+        buyDate,
+      </if>
+      <if test="addressid != null" >
+        addressId,
+      </if>
+      <if test="ordersttus != null" >
+        ordersttus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderno != null" >
+        #{orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="productid != null" >
+        #{productid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="buynum != null" >
+        #{buynum,jdbcType=DOUBLE},
+      </if>
+      <if test="buydate != null" >
+        #{buydate,jdbcType=DATE},
+      </if>
+      <if test="addressid != null" >
+        #{addressid,jdbcType=INTEGER},
+      </if>
+      <if test="ordersttus != null" >
+        #{ordersttus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="entity.OnlineOrderExample" resultType="java.lang.Integer" >
+    select count(*) from t_online_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_online_order
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderno != null" >
+        orderNo = #{record.orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productid != null" >
+        productId = #{record.productid,jdbcType=INTEGER},
+      </if>
+      <if test="record.userid != null" >
+        userId = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.buynum != null" >
+        buyNum = #{record.buynum,jdbcType=DOUBLE},
+      </if>
+      <if test="record.buydate != null" >
+        buyDate = #{record.buydate,jdbcType=DATE},
+      </if>
+      <if test="record.addressid != null" >
+        addressId = #{record.addressid,jdbcType=INTEGER},
+      </if>
+      <if test="record.ordersttus != null" >
+        ordersttus = #{record.ordersttus,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_online_order
+    set id = #{record.id,jdbcType=INTEGER},
+      orderNo = #{record.orderno,jdbcType=VARCHAR},
+      productId = #{record.productid,jdbcType=INTEGER},
+      userId = #{record.userid,jdbcType=INTEGER},
+      buyNum = #{record.buynum,jdbcType=DOUBLE},
+      buyDate = #{record.buydate,jdbcType=DATE},
+      addressId = #{record.addressid,jdbcType=INTEGER},
+      ordersttus = #{record.ordersttus,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="entity.OnlineOrder" >
+    update t_online_order
+    <set >
+      <if test="orderno != null" >
+        orderNo = #{orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="productid != null" >
+        productId = #{productid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="buynum != null" >
+        buyNum = #{buynum,jdbcType=DOUBLE},
+      </if>
+      <if test="buydate != null" >
+        buyDate = #{buydate,jdbcType=DATE},
+      </if>
+      <if test="addressid != null" >
+        addressId = #{addressid,jdbcType=INTEGER},
+      </if>
+      <if test="ordersttus != null" >
+        ordersttus = #{ordersttus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="entity.OnlineOrder" >
+    update t_online_order
+    set orderNo = #{orderno,jdbcType=VARCHAR},
+      productId = #{productid,jdbcType=INTEGER},
+      userId = #{userid,jdbcType=INTEGER},
+      buyNum = #{buynum,jdbcType=DOUBLE},
+      buyDate = #{buydate,jdbcType=DATE},
+      addressId = #{addressid,jdbcType=INTEGER},
+      ordersttus = #{ordersttus,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="vomap" type="vo.OnlineOrderVO" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="orderNo" property="orderno" jdbcType="VARCHAR" />
+    <result column="buyNum" property="buynum" jdbcType="DOUBLE" />
+    <result column="buyDate" property="buydate" jdbcType="DATE" />
+    <result column="ordersttus" property="ordersttus" jdbcType="INTEGER" />
+    
+    <result column="productId" property="productid" jdbcType="INTEGER" />
+    <result column="productName" property="productName" jdbcType="VARCHAR" />
+    <result column="productPrice" property="productPrice" jdbcType="DOUBLE" />
+    
+    <result column="productTypeId" property="productTypeId" jdbcType="INTEGER" />
+    <result column="productTypeName" property="productTypeName" jdbcType="VARCHAR" />
+    
+    <result column="userId" property="userId" jdbcType="INTEGER" />
+    <result column="userName" property="userName" jdbcType="VARCHAR" />
+    <result column="userLoginName" property="userLoginName" jdbcType="VARCHAR" />
+    
+    <result column="addressId" property="addressid" jdbcType="INTEGER" />
+  	<result column="address" property="address" jdbcType="VARCHAR" />
+  	<result column="tel" property="tel" jdbcType="VARCHAR" />
+  	<result column="linkname" property="linkMan" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="vosql" >
+    	too.id id,
+		too.orderNo orderNo,
+		too.buyNum buyNum,
+		too.buyDate buyDate,
+		too.ordersttus ordersttus,
+		tp.id productId,
+		tp.proName productName,
+		tp.proPrice productPrice,
+		tpt.id productTypeId,
+		tpt.productTypeName productTypeName,
+		tu.id userId,
+		tu.name userName,
+		tu.username userLoginName,
+		tua.id addressId,
+		tua.address address,
+		tua.tel tel,
+		tua.linkname linkMan
+  </sql>
+  
+  <select id="selectAllVo"  resultMap="vomap" >
+    select 
+		<include refid="vosql" />
+	from 
+		t_online_order too  
+		left join  t_user tu on too.userId = tu.id 
+		left join t_user_address tua on too.addressId = tua.id
+		left join t_product tp on too.productId = tp.id
+		left join t_product_type tpt on tp.typeId = tpt.id
+  </select>
+  
+  
+</mapper>

@@ -1,0 +1,10 @@
+@CHARSET "UTF-8";
+.error-msg{
+	font-size: 12px;
+    padding: 5px 5px;
+    text-align: center;
+    height: 30px;
+    border: solid 1px #f25d50;
+    background-color: #fcebe9;
+    color: #f25d50;
+}

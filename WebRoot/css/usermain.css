@@ -1,0 +1,179 @@
+.backColor{
+	background-color: #ff705a;
+}
+.topNav{
+	margin-bottom: 5px;
+	height: 60px;
+}
+
+.topNav img{
+	height: 100%;
+}
+.setMagZERO{
+	margin: 0px;
+}
+.topNav p{
+	font-size: 10px;
+}
+.clear{
+	padding: 0px;
+	margin: 0px;
+	list-style: none;
+}
+.clear li{
+	float: left;
+	width: 100px;
+	height: 40px;
+	text-align: center;
+}
+.clear-right{
+	padding: 0px;
+	margin: 0px;
+	list-style: none;
+}
+.clear-right li{
+	float: right;
+	margin-left: 10px;
+}
+.clear li:hover{
+	background-color: #c62b26;
+}
+.change{
+	background-color: #c62b26;
+}
+.nav{
+	height: 40px;
+	margin-bottom: 10px;
+}
+.nav div{
+	line-height: 40px;
+}
+.nav div a{
+	color: white;
+}
+.olSet{
+	margin-bottom: 0px;
+	margin-top: 10px;
+}
+.am-panel{
+	border-top-color: #ff705a;
+	border-top-width: 3px;
+}
+.am-disabled{
+	color: black;
+	font-weight:bold;
+	font-size: 16px;
+}
+.am-active{
+	border-width: 1px;
+	border-color: #ff705a;
+}
+hr{
+	margin: 4px;
+	color: #ff705a;
+}
+iframe{
+	width: 100%;
+	height: 1100px;
+}
+.productDiv{
+	height: 150px;
+}
+.productDivDeltai{
+	margin-top:15px;
+	line-height: 40px;
+}
+.productDivSet{
+	text-align: center;
+	line-height: 150px;
+}
+.productDivSet a{
+	font-size: 20px;
+	color:#ff705a;
+	font-weight: bold;
+}
+.productDivSet a:HOVER{
+	color: blue;
+}
+.productDiv dt{
+	width: 50%;
+	float: left;
+}
+.productDiv dt SPAN{
+	font-weight: normal;
+}
+.am-panel-myColor{
+	border-color: #ff705a;
+}
+.line{
+	margin: 20 auto;
+}
+.myMode{
+	padding: 10 15;
+	margin: 10 20;
+}
+.mybut{
+	margin:0 5;
+	width: 97px;
+}
+.butColor{
+	background-color: #19a97b;
+	color: white;
+}
+.logo1 {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    margin-right: 5px;
+    background: url("../images/ico.png") no-repeat scroll 0px 0px transparent;
+    vertical-align: -5px;
+}
+.success_bt h1 {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    line-height: 20px;
+    margin-right: 10px;
+    vertical-align: -2px;
+    background: url("../images/success_bt.jpg") no-repeat scroll 0% 0% transparent;
+    font-size: 16px;
+    color: #FFF;
+    text-align: center;
+}
+.success_bt ul{
+   	list-style: outside none none;
+   	margin: 0px;
+   	padding: 0px;
+}
+.success_bt ul li span{
+ 	margin-right: 20px;
+}
+.error{
+	font-size: 12px;
+	padding: 5 0;
+	margin:0px;
+	text-align:center;
+	height: 30px;
+}
+.adderror{
+	border: solid 1px #f25d50;
+	background-color: #fcebe9;
+	color: #f25d50;
+}
+.title{
+	padding:5px;
+	text-align:center;
+	width: 100px;
+	background-color: #ff705a;
+	color: white;
+}
+.pad{
+	padding-top: 5px;
+	margin-left: 8px;
+	margin-right: 8px;
+}
+.pro-padd{
+	float:left!important;
+	padding-left: 0px;
+	padding-right: 0px;
+}

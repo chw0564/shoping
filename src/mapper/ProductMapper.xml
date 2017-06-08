@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dao.ProductMapper" >
+  <resultMap id="BaseResultMap" type="entity.Product" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="proName" property="proname" jdbcType="VARCHAR" />
+    <result column="proPrice" property="proprice" jdbcType="DOUBLE" />
+    <result column="imgUrl" property="imgurl" jdbcType="VARCHAR" />
+    <result column="typeId" property="typeid" jdbcType="INTEGER" />
+    <result column="proStatus" property="prostatus" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, proName, proPrice, imgUrl, typeId, proStatus
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="entity.ProductExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_product
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_product
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="entity.ProductExample" >
+    delete from t_product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="entity.Product" >
+    insert into t_product (id, proName, proPrice, 
+      imgUrl, typeId, proStatus
+      )
+    values (#{id,jdbcType=INTEGER}, #{proname,jdbcType=VARCHAR}, #{proprice,jdbcType=DOUBLE}, 
+      #{imgurl,jdbcType=VARCHAR}, #{typeid,jdbcType=INTEGER}, #{prostatus,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="entity.Product" >
+    insert into t_product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="proname != null" >
+        proName,
+      </if>
+      <if test="proprice != null" >
+        proPrice,
+      </if>
+      <if test="imgurl != null" >
+        imgUrl,
+      </if>
+      <if test="typeid != null" >
+        typeId,
+      </if>
+      <if test="prostatus != null" >
+        proStatus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="proname != null" >
+        #{proname,jdbcType=VARCHAR},
+      </if>
+      <if test="proprice != null" >
+        #{proprice,jdbcType=DOUBLE},
+      </if>
+      <if test="imgurl != null" >
+        #{imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="typeid != null" >
+        #{typeid,jdbcType=INTEGER},
+      </if>
+      <if test="prostatus != null" >
+        #{prostatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="entity.ProductExample" resultType="java.lang.Integer" >
+    select count(*) from t_product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_product
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.proname != null" >
+        proName = #{record.proname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.proprice != null" >
+        proPrice = #{record.proprice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.imgurl != null" >
+        imgUrl = #{record.imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.typeid != null" >
+        typeId = #{record.typeid,jdbcType=INTEGER},
+      </if>
+      <if test="record.prostatus != null" >
+        proStatus = #{record.prostatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_product
+    set id = #{record.id,jdbcType=INTEGER},
+      proName = #{record.proname,jdbcType=VARCHAR},
+      proPrice = #{record.proprice,jdbcType=DOUBLE},
+      imgUrl = #{record.imgurl,jdbcType=VARCHAR},
+      typeId = #{record.typeid,jdbcType=INTEGER},
+      proStatus = #{record.prostatus,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="entity.Product" >
+    update t_product
+    <set >
+      <if test="proname != null" >
+        proName = #{proname,jdbcType=VARCHAR},
+      </if>
+      <if test="proprice != null" >
+        proPrice = #{proprice,jdbcType=DOUBLE},
+      </if>
+      <if test="imgurl != null" >
+        imgUrl = #{imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="typeid != null" >
+        typeId = #{typeid,jdbcType=INTEGER},
+      </if>
+      <if test="prostatus != null" >
+        proStatus = #{prostatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="entity.Product" >
+    update t_product
+    set proName = #{proname,jdbcType=VARCHAR},
+      proPrice = #{proprice,jdbcType=DOUBLE},
+      imgUrl = #{imgurl,jdbcType=VARCHAR},
+      typeId = #{typeid,jdbcType=INTEGER},
+      proStatus = #{prostatus,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <resultMap id="productVo" type="vo.ProductVO" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="proName" property="proname" jdbcType="VARCHAR" />
+    <result column="proPrice" property="proprice" jdbcType="DOUBLE" />
+    <result column="imgUrl" property="imgurl" jdbcType="VARCHAR" />
+    <result column="typeId" property="typeid" jdbcType="INTEGER" />
+    <result column="proStatus" property="prostatus" jdbcType="INTEGER" />
+    <result column="typename" property="typename" jdbcType="VARCHAR" />
+    <result column="typestatus" property="typestatus" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <sql id="productVo_Column" >
+    p.id id,
+    p.proName proName,
+    p.proPrice proPrice,
+    p.imgUrl imgUrl,
+    p.typeId typeId,
+    p.proStatus proStatus,
+    pt.productTypeName typename,
+    pt.productTypeStatus typestatus
+  </sql>
+  
+  <select id="selectProductAndType" resultMap="productVo" >
+    select
+    	<include refid="productVo_Column" />
+    from
+    	t_product p left join t_product_type pt
+    on 
+    	p.typeId = pt.id
+  </select>
+  
+  <select id="selectByStatus" resultMap="productVo" >
+    select
+    	<include refid="productVo_Column" />
+    from
+    	t_product p left join t_product_type pt
+    on 
+    	p.typeId = pt.id
+    where
+    	p.proStatus =  #{proStatus}
+    and
+    	pt.productTypeStatus = #{proTypeStatus}
+    <if test="proTypeId != null" >
+    	and typeId = #{proTypeId}
+    </if>
+  </select>
+  
+</mapper>
